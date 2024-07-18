@@ -16,11 +16,12 @@ class ProductControler {
   }
 
   public async createProduct(req: Request, res: Response) {
-    const { name, description, price, imageURL } = req.body;
+    const { name, description, price, imageURL , brand} = req.body;
     const product = await Product.create({
       name,
       description,
       price,
+      brand,
       imageURL,
     }, { createdBy: req.body.user.id });
 

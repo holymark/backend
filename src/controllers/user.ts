@@ -19,12 +19,17 @@ class UserController {
 
   public async register(req: Request, res: Response) {
     const { email, password } = req.body;
-    const user = await User.create({ email, password });
-    const token = jwt.sign({ id: user._id }, "secret", { expiresIn: "1h" });
-    res.json({
-      token,
-      user: { id: user._id, username: user.username, email: user.email },
-    });
+    if(email&&password){
+      const user = await User.create({ email, password });
+      const token = jwt.sign({ id: user._id }, "secret", { expiresIn: "1h" });
+      res.json({
+        token,
+        user: { id: user._id, username: user.username, email: user.email },
+      });
+    }
+    else {
+      return res.status(400).json({ message: "Invalid credentials" });
+    }
   }
 
   public async getUser(req: Request, res: Response) {
@@ -36,7 +41,7 @@ class UserController {
     res.json(user);
   }
 
-  public  async deleteUser(req: Request, res: Response) {
+  public async deleteUser(req: Request, res: Response) {
     const { id } = req.params;
     const user = await User.findById(id);
     if (!user) {

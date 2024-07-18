@@ -9,7 +9,7 @@ const Default = new DefaultControler();
 const User = new UserController();
 const Product = new ProductControler();
 
-// /ping is for testing
+// /ping is for testing sever health
 router.get("/ping", Default.sendHello);
 
 router.post("/user/login", User.auth);

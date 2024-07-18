@@ -5,6 +5,7 @@ const productSchema = new Schema({
   description: String,
   price: Number,
   imageURL: String,
+  brand: String,
   createdBy: { type: Schema.Types.ObjectId, ref: 'User' },
 });
 
