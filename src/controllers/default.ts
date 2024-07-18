@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import router from "../routes/routes.js";
 
 class DefaultControler {
  
