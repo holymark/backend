@@ -13,7 +13,7 @@ class UserController {
     const token = jwt.sign({ id: user._id }, "secret", { expiresIn: "1h" });
     res.json({
       token,
-      user: { id: user._id, username: user.username, email: user.email },
+      user,
     });
   }
 
@@ -24,7 +24,7 @@ class UserController {
       const token = jwt.sign({ id: user._id }, "secret", { expiresIn: "1h" });
       res.json({
         token,
-        user: { id: user._id, username: user.username, email: user.email },
+        user,
       });
     }
     else {

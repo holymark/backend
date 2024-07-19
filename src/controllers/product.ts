@@ -17,6 +17,11 @@ class ProductControler {
 
   public async createProduct(req: Request, res: Response) {
     const { name, description, price, imageURL , brand} = req.body;
+    if (!name || !description || !price || !imageURL) {
+      return res.status(400).json({ message: "Invalid product data" });
+    }
+
+
     const product = await Product.create({
       name,
       description,
@@ -27,6 +32,8 @@ class ProductControler {
 
     res.json(product);
   }
+
+
   public async getProducts(req: Request, res: Response) {
     const products = await Product.find().populate('createdBy');
     res.json(products);
@@ -41,6 +48,17 @@ class ProductControler {
     await product.deleteOne();
     res.json({ message: "Product deleted" });
   }
+
+  public async updateProduct(req: Request, res: Response) {
+    const { id } = req.params;
+    const { name, description, price, imageURL } = req.body;
+    const product = await Product.findById(id);
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+  }
+  await product.updateOne({ name, description, price, imageURL });
+  res.json(product);
+}
 }
 
 export default ProductControler;

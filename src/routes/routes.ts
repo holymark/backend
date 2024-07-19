@@ -10,15 +10,17 @@ const User = new UserController();
 const Product = new ProductControler();
 
 // /ping is for testing sever health
-router.get("/ping", Default.sendHello);
+router.get("/api/ping", Default.sendHello);
+router.get("/", Default.sendHello);
 
-router.post("/user/login", User.auth);
-router.post("/user/register", User.register);
-router.get("/user/:id", User.getUser);
+router.post("/api/auth/login", User.auth);
+router.post("/api/auth/register", User.register);
+router.get("/api/user/:id", User.getUser);
 router.delete("/user/:id", User.deleteUser);
 
-router.post("/product/create", Product.auth, Product.createProduct);
-router.get("/product", Product.getProducts);
-router.delete("/product/:id", Product.deleteProduct);
+router.post("/api/product/create", Product.auth, Product.createProduct);
+router.get("/api/products", Product.getProducts);
+router.put("/api/product/:id", Product.auth, Product.updateProduct);
+router.delete("/product/:id", Product.auth, Product.deleteProduct);
 
 export default router;
