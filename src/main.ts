@@ -21,7 +21,6 @@ const corsOptions = {
   credentials: true,
 };
 
-// init express App
 const app = express();
 
 app.use(cors(corsOptions));
