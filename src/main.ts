@@ -16,6 +16,7 @@ connect(process.env.MONGO_URI, {
 
 const corsOptions = {
   origin: 'https://5173-idx-learnlyapp-comerce-1721181347524.cluster-4ezwrnmkojawstf2k7vqy36oe6.cloudworkstations.dev', 
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
 };
@@ -24,6 +25,7 @@ const corsOptions = {
 const app = express();
 
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 app.use(bodyParser.json());
 
