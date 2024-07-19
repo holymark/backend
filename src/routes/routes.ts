@@ -2,12 +2,15 @@ import  { Router } from "express";
 import DefaultControler from "../controllers/default.js";
 import UserController from "../controllers/user.js";
 import ProductControler from "../controllers/product.js";
+import cors from "cors";
 
 const router = Router();
 
 const Default = new DefaultControler();
 const User = new UserController();
 const Product = new ProductControler();
+
+router.options('*', cors());
 
 // /ping is for testing sever health
 router.get("/api/ping", Default.sendHello);

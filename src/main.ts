@@ -14,10 +14,16 @@ connect(process.env.MONGO_URI, {
   useUnifiedTopology: true,
 } as ConnectOptions);
 
+const corsOptions = {
+  origin: 'https://5173-idx-learnlyapp-comerce-1721181347524.cluster-4ezwrnmkojawstf2k7vqy36oe6.cloudworkstations.dev', 
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+};
+
 // init express App
 const app = express();
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
 
