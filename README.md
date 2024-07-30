@@ -5,7 +5,9 @@ The server starter uses OOP implention and a well structured files directory, to
 ```
 git clone https://github.com/holymark/node-express-starter.git
 ```
-
+```
+npm i or yarn add 
+```
 ```
 npm start
 ````
